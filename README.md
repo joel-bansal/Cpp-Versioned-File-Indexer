@@ -1,6 +1,7 @@
 # Memory-Efficient Versioned File Indexer
 
 CS253 Course - Programming Assignment'26
+
 Language: C++17
 
 By: Joel Bansal (230509)
@@ -96,24 +97,6 @@ Every run prints to stdout. All formats are shown below.
     Execution Time (s): <seconds>
 
 Note: word matching is case-insensitive (`DEVOPs`, `devops`, and `DEVOPS` all return the same count). Informational log messages go to stderr and do not appear in the query output.
-
----
-
-## Project Structure
-
-All logic is in a single file `main.cpp`. The classes and their responsibilities are:
-
-| Class            | Responsibility                                                                 |
-|------------------|--------------------------------------------------------------------------------|
-| `Config`         | Parses and validates all command-line arguments; throws on invalid input        |
-| `VersionedIndex` | Stores one `unordered_map<string, int>` per version; provides frequency lookups|
-| `Tokenizer`      | Extracts lowercase alphanumeric tokens from raw text and updates the index     |
-| `BufferedReader` | Reads files incrementally in fixed-size chunks; correctly bridges word splits across chunk boundaries |
-| `Query`          | Abstract base class declaring the `execute()` pure virtual interface           |
-| `WordQuery`      | Derived from `Query`; looks up and prints a single word's frequency            |
-| `TopKQuery`      | Derived from `Query`; uses template function `getTopK` to rank and print top K words |
-| `WordDiffQuery`  | Derived from `Query`; computes and prints `count(v2) - count(v1)` for a word   |
-| `QueryProcessor` | Owns all other objects; orchestrates file reading, index building, query dispatch, and timing |
 
 ---
 
